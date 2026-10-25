@@ -177,6 +177,10 @@ export default function ContactSection() {
                   </div>
                 </div>
                 <span className="font-mono-code text-xs text-[#A8A8A8] group-hover:text-[#A90E02] transition-colors">
+                  [CONNECT ↗]
+                </span>
+              </a>
+
               {/* Phone / WhatsApp Card */}
               <a
                 href="tel:01608171029"

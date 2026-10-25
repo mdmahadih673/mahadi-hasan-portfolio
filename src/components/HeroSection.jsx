@@ -80,10 +80,20 @@ export default function HeroSection() {
           y: 0,
           opacity: 1,
           clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          duration: 1.4,
+          duration: 1.2,
           stagger: 0.15,
           delay: 0.2,
         })
+        .to(
+          [metaTopRef.current, metaBottomLeftRef.current],
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+          },
+          '-=0.5'
+        )
         .fromTo(
           scrollIndicatorRef.current,
           { opacity: 0, y: -10 },
@@ -133,14 +143,13 @@ export default function HeroSection() {
         0.3
       );
 
-      // D. Reveal editorial badges and intro bio
+      // D. Reveal bottom right metadata badge
       scrollTl.to(
-        [metaTopRef.current, metaBottomLeftRef.current, metaBottomRightRef.current],
+        metaBottomRightRef.current,
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.12,
           ease: 'power2.out',
         },
         0.5
