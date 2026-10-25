@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, Target, Compass, Mail, ArrowUpRight, Download } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
+import { downloadResume } from '../utils/downloadCV';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -200,11 +201,10 @@ export default function AboutSection() {
             {/* Social & Direct Contact Links + CV Download */}
             <div className="pt-8 border-t border-black/15 flex flex-wrap items-center gap-4">
               <a
-                href="/Mahadi_Hasan_MERN_Resume.pdf"
+                href="/api/download-cv"
                 download="Mahadi_Hasan_MERN_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-wider font-bold hover:bg-[#880b02] transition-colors duration-300"
+                onClick={downloadResume}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-wider font-bold hover:bg-[#880b02] transition-colors duration-300 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Download CV (PDF)</span>

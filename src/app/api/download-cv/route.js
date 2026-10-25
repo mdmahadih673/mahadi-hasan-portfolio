@@ -16,7 +16,9 @@ export async function GET() {
     headers: {
       'Content-Type': 'application/pdf',
       'Content-Disposition': 'attachment; filename="Mahadi_Hasan_MERN_Resume.pdf"',
-      'Cache-Control': 'no-cache',
+      'Content-Length': fileBuffer.length.toString(),
+      'Cache-Control': 'no-store, must-revalidate',
+      'Pragma': 'no-cache',
     },
   });
 }

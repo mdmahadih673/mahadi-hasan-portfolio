@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Download } from 'lucide-react';
+import { downloadResume } from '../utils/downloadCV';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -265,10 +266,9 @@ export default function HeroSection() {
               </p>
             </div>
             <a
-              href="/Mahadi_Hasan_MERN_Resume.pdf"
+              href="/api/download-cv"
               download="Mahadi_Hasan_MERN_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={downloadResume}
               className="relative z-40 pointer-events-auto cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-[11px] uppercase tracking-wider font-bold hover:bg-[#850b02] transition-colors shrink-0 shadow-lg"
             >
               <Download className="w-3.5 h-3.5" />
