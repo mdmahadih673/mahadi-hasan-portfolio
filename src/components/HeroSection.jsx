@@ -258,9 +258,11 @@ export default function HeroSection() {
             <a
               href="/Mahadi_Hasan_MERN_Resume.pdf"
               download="Mahadi_Hasan_MERN_Resume.pdf"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-[11px] uppercase tracking-wider font-bold hover:bg-[#850b02] transition-colors shrink-0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-40 pointer-events-auto cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-[11px] uppercase tracking-wider font-bold hover:bg-[#850b02] transition-colors shrink-0 shadow-lg"
             >
-              <Download className="w-3 h-3" />
+              <Download className="w-3.5 h-3.5" />
               <span>Get CV</span>
             </a>
           </div>

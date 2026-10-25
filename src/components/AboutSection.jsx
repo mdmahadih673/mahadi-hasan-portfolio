@@ -202,6 +202,8 @@ export default function AboutSection() {
               <a
                 href="/Mahadi_Hasan_MERN_Resume.pdf"
                 download="Mahadi_Hasan_MERN_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-wider font-bold hover:bg-[#880b02] transition-colors duration-300"
               >
                 <Download className="w-4 h-4" />

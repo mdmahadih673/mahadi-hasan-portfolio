@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Mail, Send, CheckCircle2, ArrowUp, Copy, Check, Download } from 'lucide-react';
+import { Mail, Send, CheckCircle2, ArrowUp, Copy, Check, Download, Phone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
 export default function ContactSection() {
@@ -177,7 +177,26 @@ export default function ContactSection() {
                   </div>
                 </div>
                 <span className="font-mono-code text-xs text-[#A8A8A8] group-hover:text-[#A90E02] transition-colors">
-                  [CONNECT ↗]
+              {/* Phone / WhatsApp Card */}
+              <a
+                href="tel:01608171029"
+                className="p-5 bg-[#0D0D0D] border border-[#222222] flex items-center justify-between group hover:border-[#A90E02] transition-colors block"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-black border border-[#2B2B2B] flex items-center justify-center text-[#A90E02]">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-mono-code text-[11px] text-[#A8A8A8] uppercase tracking-wider block">
+                      DIRECT PHONE / WHATSAPP
+                    </span>
+                    <span className="font-mono-code text-sm text-[#FFFBD4]">
+                      +880 1608-171029
+                    </span>
+                  </div>
+                </div>
+                <span className="font-mono-code text-xs text-[#A8A8A8] group-hover:text-[#A90E02] transition-colors">
+                  [CALL ↗]
                 </span>
               </a>
             </div>
@@ -187,7 +206,9 @@ export default function ContactSection() {
               <a
                 href="/Mahadi_Hasan_MERN_Resume.pdf"
                 download="Mahadi_Hasan_MERN_Resume.pdf"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-widest font-bold hover:bg-[#850b02] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-widest font-bold hover:bg-[#850b02] transition-colors cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Download CV (PDF)</span>

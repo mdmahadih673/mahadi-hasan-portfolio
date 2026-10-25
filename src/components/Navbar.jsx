@@ -115,6 +115,8 @@ export default function Navbar() {
             <a
               href="/Mahadi_Hasan_MERN_Resume.pdf"
               download="Mahadi_Hasan_MERN_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs font-mono-code tracking-widest uppercase bg-[#A90E02] text-[#FFFBD4] hover:bg-[#850b02] transition-colors duration-300 font-bold"
             >
               <Download className="w-3.5 h-3.5" />
@@ -173,6 +175,8 @@ export default function Navbar() {
             <a
               href="/Mahadi_Hasan_MERN_Resume.pdf"
               download="Mahadi_Hasan_MERN_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2"
             >
               <Download className="w-4 h-4" />
