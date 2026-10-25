@@ -80,56 +80,39 @@ export default function HeroSection() {
             className="object-contain object-center"
           />
 
-          {/* Interactive Clickable Hotspots & Overlays */}
-          {/* 1. Interactive Social Links Overlay over the artwork's social icon strip */}
-          <div className="absolute left-[3.5%] md:left-[4.2%] bottom-[29%] md:bottom-[31%] z-30 flex items-center gap-3 bg-black/70 backdrop-blur-xs px-2.5 py-1.5 border border-white/10 rounded-sm">
-            <span className="w-1.5 h-4 bg-[#A90E02]" />
+          {/* Interactive Clickable Hotspots mapped directly over the artwork's social icons */}
+          <div className="absolute left-[3.2%] sm:left-[3.8%] bottom-[18%] sm:bottom-[20%] md:bottom-[22%] z-30 flex items-center gap-2 sm:gap-4">
             <a
               href="https://github.com/mdmahadih673"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#FFFBD4] hover:text-[#A90E02] transition-colors p-1"
-              title="GitHub Profile"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-[#A90E02]/30 hover:scale-110 transition-all cursor-pointer"
+              title="GitHub Profile (github.com/mdmahadih673)"
               aria-label="GitHub"
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
+            />
             <a
               href="https://www.linkedin.com/in/md-mahadi-hasan-792ba8344/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#FFFBD4] hover:text-[#A90E02] transition-colors p-1"
-              title="LinkedIn Profile"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-[#A90E02]/30 hover:scale-110 transition-all cursor-pointer"
+              title="LinkedIn Profile (md-mahadi-hasan)"
               aria-label="LinkedIn"
-            >
-              <LinkedinIcon className="w-4 h-4" />
-            </a>
+            />
             <a
               href="mailto:mdmahadih673@gmail.com"
-              className="text-[#FFFBD4] hover:text-[#A90E02] transition-colors p-1"
-              title="Email Mahadi"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center hover:bg-[#A90E02]/30 hover:scale-110 transition-all cursor-pointer"
+              title="Email Mahadi (mdmahadih673@gmail.com)"
               aria-label="Email"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
+            />
           </div>
 
-          {/* 2. Interactive Scroll Down Trigger (Bottom Right of Artwork) */}
+          {/* Interactive Clickable Hotspot mapped directly over the Scroll Down indicator */}
           <button
             onClick={handleScrollDown}
-            className="absolute right-[3%] md:right-[4%] bottom-[5%] z-30 flex flex-col items-center gap-1.5 text-right font-mono-code text-[10px] tracking-widest text-[#FFFBD4]/80 hover:text-[#A90E02] transition-colors cursor-pointer group/scroll p-2"
+            className="absolute right-[4.5%] sm:right-[5.5%] bottom-[5%] sm:bottom-[7%] w-14 h-24 z-30 cursor-pointer hover:opacity-75 transition-opacity"
+            title="Scroll Down"
             aria-label="Scroll to About section"
-          >
-            <span className="text-[9px] uppercase tracking-widest text-[#A8A8A8] group-hover/scroll:text-[#A90E02]">
-              SCROLL
-            </span>
-            <span className="text-[9px] uppercase tracking-widest font-bold text-[#FFFBD4] group-hover/scroll:text-[#A90E02]">
-              DOWN
-            </span>
-            <div className="w-[1px] h-8 bg-white/30 group-hover/scroll:bg-[#A90E02] transition-colors flex flex-col justify-end items-center">
-              <div className="w-2 h-2 rounded-full border border-white/60 group-hover/scroll:border-[#A90E02] mb-0.5" />
-            </div>
-          </button>
+          />
         </div>
       </div>
 
