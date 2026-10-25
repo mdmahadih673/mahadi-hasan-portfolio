@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mahadi Hasan — Creative MERN Stack Developer Portfolio
 
-## Getting Started
+A production-quality, highly creative, editorial personal portfolio website built with **Next.js (App Router)**, **Tailwind CSS**, **GSAP ScrollTrigger**, and **Lenis** smooth scrolling.
 
-First, run the development server:
+---
 
+## 🎨 Design Direction
+- **Creative + Minimal + Clean + Editorial + Cinematic**
+- **Strict Color Palette (Zero Gradients):**
+  - Primary Background: `#000000`
+  - Primary Accent: `#A90E02`
+  - Cream Contrast: `#FFFBD4`
+  - Primary Text: `#FFFBD4`
+  - Secondary Text: `#A8A8A8`
+  - Dark Text: `#000000`
+
+---
+
+## 🚀 Key Features
+- **Hero Experience:** Scroll-driven pinned reveal. Opens on pure black with bold red condensed typography `MAHADI HASAN`, then smoothly reveals Mahadi's portrait layered in front of the name on scroll.
+- **Editorial About Section:** Clean cream `#FFFBD4` contrasting background, asymmetric columns, developer portrait card, and official CV download action.
+- **Skills System:** 26 production-confirmed technologies categorized by Frontend, Backend, Database, Auth & Security, Payments, and AI-Driven Development.
+- **Selected Works:** Featuring 3 real production web applications with live Vercel deployments and GitHub code repositories.
+- **Direct Transmission Contact:** Interactive validated contact form with direct copyable email (`mdmahadih673@gmail.com`), phone/WhatsApp, and return-to-top action.
+- **Downloadable CV:** Integrated official PDF resume (`/Mahadi_Hasan_MERN_Resume.pdf`).
+
+---
+
+## 💻 Tech Stack
+- **Framework:** Next.js (App Router) & React
+- **Styling:** Tailwind CSS & Vanilla CSS (strictly zero gradients)
+- **Animations:** GSAP & GSAP ScrollTrigger
+- **Smooth Scroll:** Lenis
+- **Icons:** Lucide React & Custom SVG Brand Icons
+- **Fonts:** Bebas Neue, Syne, Space Grotesk (Google Fonts via Next.js Font Optimization)
+
+---
+
+## 📂 Featured Projects
+1. **[Bangla News 24](https://bangla-news-24-rho.vercel.app/)** — Real-Time Digital Journalism & News Aggregator ([GitHub](https://github.com/mdmahadih673/bangla-news-24))
+2. **[Bazar Dor (বাজার দর)](https://assignment-7-flw1.vercel.app/)** — Daily Commodity Price Tracker & Market Analytics ([GitHub](https://github.com/mdmahadih673/assignment-7))
+3. **[FitLog](https://assienment-6.vercel.app/)** — Minimalist Workout Companion & Routine Planner ([GitHub](https://github.com/mdmahadih673/assienment-6))
+
+---
+
+## 🛠️ Local Development
 ```bash
+# Clone the repository
+git clone https://github.com/mdmahadih673/mahadi-portfolio.git
+
+# Navigate to project
+cd mahadi-portfolio
+
+# Install dependencies
+npm install
+
+# Start local development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License & Credits
+© 2026 Mahadi Hasan. All rights reserved.
