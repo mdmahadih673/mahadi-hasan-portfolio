@@ -1,4 +1,4 @@
-# Mahadi Hasan — Creative MERN Stack Developer Portfolio
+# mahadi-hasan-portfolio
 
 A production-quality, highly creative, editorial personal portfolio website built with **Next.js (App Router)**, **Tailwind CSS**, **GSAP ScrollTrigger**, and **Lenis** smooth scrolling.
 
