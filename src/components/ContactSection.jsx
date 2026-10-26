@@ -8,7 +8,11 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [statusMessage, setStatusMessage] = useState('');
+  const [emailSetupRequired, setEmailSetupRequired] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const fallbackMailto = `mailto:mdmahadih673@gmail.com?subject=${encodeURIComponent(`Portfolio inquiry from ${formData.name}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('mdmahadih673@gmail.com');
@@ -32,7 +36,7 @@ export default function ContactSection() {
     return errs;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -42,11 +46,30 @@ export default function ContactSection() {
 
     setErrors({});
     setStatus('submitting');
+    setStatusMessage('');
+    setEmailSetupRequired(false);
 
-    // Process submission and provide working fallback to direct mail client
-    setTimeout(() => {
+    try {
+      const website = new FormData(e.currentTarget).get('website');
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, website }),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        const deliveryError = new Error(result.error || 'Your message could not be sent. Please try again.');
+        deliveryError.code = result.code;
+        throw deliveryError;
+      }
+
       setStatus('success');
-    }, 900);
+    } catch (error) {
+      setStatus('error');
+      setEmailSetupRequired(error.code === 'email_not_configured');
+      setStatusMessage(error.message || 'Your message could not be sent. Please try again.');
+    }
   };
 
   const scrollToTop = () => {
@@ -75,7 +98,7 @@ export default function ContactSection() {
         {/* Large Typographic Heading */}
         <div className="mb-20">
           <p className="font-mono-code text-xs tracking-widest text-[#A8A8A8] uppercase mb-4">
-            // COLLABORATIONS, PROJECTS &amp; OPPORTUNITIES
+              {'// COLLABORATIONS, PROJECTS & OPPORTUNITIES'}
           </p>
           <h2 className="font-display text-6xl sm:text-8xl md:text-9xl text-[#FFFBD4] uppercase tracking-tight leading-[0.88]">
             LET&apos;S BUILD
@@ -230,7 +253,7 @@ export default function ContactSection() {
           <div className="lg:col-span-7 bg-[#0A0A0A] border-2 border-[#222222] p-8 md:p-12 relative">
             <div className="flex items-center justify-between pb-6 border-b border-[#1E1E1E] mb-8">
               <span className="font-mono-code text-xs text-[#A8A8A8] uppercase tracking-widest">
-                // TRANSMISSION INTERFACE
+                {'// TRANSMISSION INTERFACE'}
               </span>
               <span className="font-mono-code text-xs text-[#A90E02] font-bold">
                 SECURE DISPATCH
@@ -247,18 +270,12 @@ export default function ContactSection() {
                 </h3>
                 <p className="font-editorial text-sm text-[#A8A8A8] max-w-md">
                   Thank you, <strong className="text-[#FFFBD4]">{formData.name}</strong>.
-                  Your message has been received. You can also send a direct email to{' '}
-                  <a
-                    href={`mailto:mdmahadih673@gmail.com?subject=Inquiry from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}`}
-                    className="text-[#A90E02] underline"
-                  >
-                    mdmahadih673@gmail.com
-                  </a>
-                  .
+                  Your message was sent to <a href="mailto:mdmahadih673@gmail.com" className="text-[#A90E02] underline">mdmahadih673@gmail.com</a>.
                 </p>
                 <button
                   onClick={() => {
                     setStatus('idle');
+                    setStatusMessage('');
                     setFormData({ name: '', email: '', message: '' });
                   }}
                   className="mt-6 px-6 py-2.5 bg-black border border-[#444444] text-xs font-mono-code uppercase tracking-wider text-[#FFFBD4] hover:border-[#A90E02]"
@@ -268,6 +285,10 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="website">Leave this field empty</label>
+                  <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
                 {/* Name Field */}
                 <div>
                   <label
@@ -279,6 +300,9 @@ export default function ContactSection() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
+                    required
+                    maxLength={120}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Alexander Vance"
@@ -302,6 +326,9 @@ export default function ContactSection() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
+                    required
+                    maxLength={254}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="e.g. alexander@enterprise.com"
@@ -324,7 +351,10 @@ export default function ContactSection() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={5}
+                    required
+                    maxLength={4000}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Outline your project scope, technical requirements, or schedule..."
@@ -340,6 +370,18 @@ export default function ContactSection() {
                 </div>
 
                 {/* Submit Button */}
+                {status === 'error' && (
+                  <div role="alert" className="space-y-3">
+                    <p className="font-editorial text-sm text-[#ff8175]">
+                      {emailSetupRequired ? 'Direct email sending needs SMTP setup. You can still send this message using your email app.' : statusMessage}
+                    </p>
+                    {emailSetupRequired && (
+                      <a href={fallbackMailto} className="inline-flex items-center gap-2 border border-[#A90E02] px-4 py-3 font-mono-code text-xs font-bold uppercase tracking-widest text-[#FFFBD4] hover:bg-[#A90E02]">
+                        OPEN EMAIL APP <Mail className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
+                )}
                 <button
                   type="submit"
                   disabled={status === 'submitting'}

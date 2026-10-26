@@ -13,18 +13,19 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [heroReady, setHeroReady] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const headerRef = useRef(null);
 
   useEffect(() => {
-    // If user prefers reduced motion, reveal navbar immediately
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion && headerRef.current) {
-      headerRef.current.style.opacity = '1';
-      headerRef.current.style.transform = 'translateY(0)';
-      headerRef.current.style.pointerEvents = 'auto';
-    }
+    const revealAfterHero = () => setHeroReady(true);
+    const resetAfterHero = () => setHeroReady(false);
+    window.addEventListener('hero:ready', revealAfterHero);
+    window.addEventListener('hero:reset', resetAfterHero);
+    const readyFrame = window.__mahadiHeroReady
+      ? window.requestAnimationFrame(revealAfterHero)
+      : null;
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -47,6 +48,9 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hero:ready', revealAfterHero);
+      window.removeEventListener('hero:reset', resetAfterHero);
+      if (readyFrame !== null) window.cancelAnimationFrame(readyFrame);
     };
   }, []);
 
@@ -64,12 +68,11 @@ export default function Navbar() {
       <header
         id="main-navbar"
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow,padding] duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-[opacity,transform,background-color,border-color,box-shadow,padding] duration-500 ${heroReady ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-4 opacity-0 pointer-events-none'} ${
           isScrolled
             ? 'py-3 bg-black/95 border-b border-[#222222] backdrop-blur-sm shadow-md'
             : 'py-4 bg-transparent border-b border-transparent'
         }`}
-        style={{ opacity: 0, transform: 'translateY(-20px)', pointerEvents: 'none' }}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Monogram Logo */}
