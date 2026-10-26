@@ -24,12 +24,12 @@ export default function ProjectsSection() {
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
-          start: 'top 85%',
+          start: 'top 90%',
         },
-        y: 60,
+        y: 34,
         opacity: 0,
-        duration: 1.1,
-        ease: 'power3.out',
+        duration: 0.65,
+        ease: 'power2.out',
       });
 
       // Animate Each Project Card & Image Clipping Mask
@@ -46,12 +46,12 @@ export default function ProjectsSection() {
               {
                 scrollTrigger: {
                   trigger: item,
-                  start: 'top 75%',
+                  start: 'top 86%',
                 },
                 clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
                 opacity: 1,
-                duration: 1.2,
-                ease: 'power3.inOut',
+                duration: 0.72,
+                ease: 'power2.out',
               }
             );
           }
@@ -60,12 +60,12 @@ export default function ProjectsSection() {
             gsap.from(content, {
               scrollTrigger: {
                 trigger: item,
-                start: 'top 70%',
+                start: 'top 84%',
               },
-              y: 50,
+              y: 28,
               opacity: 0,
-              duration: 1,
-              ease: 'power3.out',
+              duration: 0.62,
+              ease: 'power2.out',
             });
           }
         });
@@ -98,7 +98,7 @@ export default function ProjectsSection() {
         {/* Section Heading */}
         <div ref={headingRef} className="mb-20 md:mb-28">
           <p className="font-mono-code text-xs tracking-widest text-[#A8A8A8] uppercase mb-4">
-            // CURATED DEVELOPMENT SHOWCASE
+            {'// CURATED DEVELOPMENT SHOWCASE'}
           </p>
           <h2 className="font-display text-6xl sm:text-8xl md:text-9xl text-[#FFFBD4] uppercase tracking-tight leading-[0.88]">
             SELECTED
@@ -136,7 +136,7 @@ export default function ProjectsSection() {
                   />
                   {/* Subtle top bar overlay on preview */}
                   <div className="absolute top-0 left-0 right-0 p-3 bg-black/80 border-b border-[#222222] flex items-center justify-between font-mono-code text-[11px] text-[#A8A8A8]">
-                    <span>// {project.category}</span>
+                    <span>{'// '}{project.category}</span>
                     <span className="text-[#A90E02] font-bold">{project.year}</span>
                   </div>
 

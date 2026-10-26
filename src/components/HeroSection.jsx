@@ -41,9 +41,9 @@ export default function HeroSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=2200',
+          end: '+=1700',
           pin: true,
-          scrub: reducedMotion ? true : 1.25,
+          scrub: reducedMotion ? true : 0.7,
           anticipatePin: 1,
           onLeave: revealNavigation,
           onUpdate: (self) => {

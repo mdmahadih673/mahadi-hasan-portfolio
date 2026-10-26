@@ -21,12 +21,12 @@ export default function ExperienceSection() {
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
-          start: 'top 85%',
+          start: 'top 90%',
         },
-        y: 50,
+        y: 30,
         opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
+        duration: 0.62,
+        ease: 'power2.out',
       });
 
       const items = timelineRef.current?.querySelectorAll('.timeline-node');
@@ -34,13 +34,13 @@ export default function ExperienceSection() {
         gsap.from(items, {
           scrollTrigger: {
             trigger: timelineRef.current,
-            start: 'top 80%',
+            start: 'top 88%',
           },
-          y: 40,
+          y: 24,
           opacity: 0,
-          stagger: 0.2,
-          duration: 0.9,
-          ease: 'power3.out',
+          stagger: 0.12,
+          duration: 0.6,
+          ease: 'power2.out',
         });
       }
     }, sectionRef);
@@ -71,7 +71,7 @@ export default function ExperienceSection() {
         {/* Heading */}
         <div ref={headingRef} className="mb-20">
           <p className="font-mono-code text-xs tracking-widest text-[#A8A8A8] uppercase mb-4">
-            // DELIBERATE PRACTICE &amp; PROGRESSION
+            {'// DELIBERATE PRACTICE & PROGRESSION'}
           </p>
           <h2 className="font-display text-5xl sm:text-7xl md:text-8xl text-[#FFFBD4] uppercase tracking-tight leading-[0.9]">
             ENGINEERING JOURNEY &amp;
@@ -102,7 +102,7 @@ export default function ExperienceSection() {
                   {node.period}
                 </span>
                 <span className="text-[#A8A8A8] uppercase tracking-widest">
-                  // {node.context}
+                  {'// '}{node.context}
                 </span>
               </div>
 

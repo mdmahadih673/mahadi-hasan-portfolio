@@ -25,24 +25,24 @@ export default function AboutSection() {
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
-          start: 'top 80%',
+          start: 'top 90%',
         },
-        y: 60,
+        y: 32,
         opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
+        duration: 0.62,
+        ease: 'power2.out',
       });
 
       gsap.from([bioRef.current, photoCardRef.current, detailsRef.current], {
         scrollTrigger: {
           trigger: bioRef.current,
-          start: 'top 75%',
+          start: 'top 86%',
         },
-        y: 50,
+        y: 28,
         opacity: 0,
-        stagger: 0.2,
-        duration: 1.1,
-        ease: 'power3.out',
+        stagger: 0.12,
+        duration: 0.68,
+        ease: 'power2.out',
       });
     }, sectionRef);
 
@@ -72,7 +72,7 @@ export default function AboutSection() {
         {/* Large Typographic Editorial Heading */}
         <div ref={headingRef} className="mb-16 md:mb-24">
           <p className="font-mono-code text-xs tracking-widest text-black/50 uppercase mb-4">
-            // PHILOSOPHY &amp; APPROACH
+            {'// PHILOSOPHY & APPROACH'}
           </p>
           <h2 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-black leading-[0.88] uppercase tracking-tight">
             BUILDING DIGITAL
@@ -152,7 +152,7 @@ export default function AboutSection() {
             {/* Editorial Focus Areas */}
             <div ref={detailsRef} className="pt-8 border-t-2 border-black/15">
               <h3 className="font-mono-code text-xs uppercase tracking-widest text-black/50 mb-6">
-                // CORE AREAS OF SPECIALIZATION
+                {'// CORE AREAS OF SPECIALIZATION'}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="border-l-2 border-[#A90E02] pl-4">
