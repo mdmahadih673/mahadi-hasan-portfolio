@@ -90,7 +90,7 @@ export default function AboutSection() {
             <div className="relative border-2 border-black bg-black p-3">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-black">
                 <Image
-                  src="/images/about-portrait.png"
+                  src="/images/about-portrait.jpg"
                   alt="Mahadi Hasan - Editorial Portrait"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -200,7 +200,7 @@ export default function AboutSection() {
             {/* Social & Direct Contact Links + CV Download */}
             <div className="pt-8 border-t border-black/15 flex flex-wrap items-center gap-4">
               <a
-                href="/Mahadi_Hasan_MERN_Resume.pdf"
+                href="/api/download-cv"
                 download="Mahadi_Hasan_MERN_Resume.pdf"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-wider font-bold hover:bg-[#880b02] transition-colors duration-300 cursor-pointer"
               >

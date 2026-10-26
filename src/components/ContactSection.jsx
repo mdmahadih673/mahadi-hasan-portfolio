@@ -208,7 +208,7 @@ export default function ContactSection() {
             {/* Action buttons: Download CV & Back to top */}
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <a
-                href="/Mahadi_Hasan_MERN_Resume.pdf"
+                href="/api/download-cv"
                 download="Mahadi_Hasan_MERN_Resume.pdf"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-widest font-bold hover:bg-[#850b02] transition-colors cursor-pointer"
               >

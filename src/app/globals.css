@@ -113,3 +113,42 @@ html.lenis, html.lenis body {
 .transition-editorial {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ═══════════════ HERO SECTION ═══════════════ */
+
+/* Oversized background text responsive sizing */
+.hero-bg-text {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Hero buttons */
+.hero-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero social icons */
+.hero-social-icon {
+  backdrop-filter: blur(4px);
+}
+
+/* Hero section — prevent overflow on mobile */
+.hero-section {
+  contain: paint;
+}
+
+/* Hero portrait bottom blend */
+.hero-portrait {
+  will-change: transform;
+}
+
+/* Reduced motion: show everything instantly */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section *,
+  .hero-section *::before,
+  .hero-section *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}

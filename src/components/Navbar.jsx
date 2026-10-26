@@ -1,14 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowUpRight, Download } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '#hero', id: 'hero' },
   { label: 'About', href: '#about', id: 'about' },
   { label: 'Skills', href: '#skills', id: 'skills' },
-  { label: 'Works', href: '#works', id: 'works' },
-  { label: 'Experience', href: '#experience', id: 'experience' },
+  { label: 'Projects', href: '#works', id: 'works' },
   { label: 'Contact', href: '#contact', id: 'contact' },
 ];
 
@@ -16,8 +15,17 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const headerRef = useRef(null);
 
   useEffect(() => {
+    // If user prefers reduced motion, reveal navbar immediately
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion && headerRef.current) {
+      headerRef.current.style.opacity = '1';
+      headerRef.current.style.transform = 'translateY(0)';
+      headerRef.current.style.pointerEvents = 'auto';
+    }
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 80);
@@ -37,7 +45,9 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const handleLinkClick = (e, href) => {
@@ -52,21 +62,24 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        id="main-navbar"
+        ref={headerRef}
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow,padding] duration-300 ${
           isScrolled
-            ? 'opacity-100 translate-y-0 py-3 bg-black/95 border-b border-[#222222] backdrop-blur-sm shadow-md'
-            : 'opacity-0 -translate-y-4 pointer-events-none py-6 bg-transparent'
+            ? 'py-3 bg-black/95 border-b border-[#222222] backdrop-blur-sm shadow-md'
+            : 'py-4 bg-transparent border-b border-transparent'
         }`}
+        style={{ opacity: 0, transform: 'translateY(-20px)', pointerEvents: 'none' }}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Custom Monogram Logo */}
+          {/* Monogram Logo */}
           <a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
             className="group flex items-center gap-3 select-none"
-            aria-label="Mahadi Hasan Monogram Logo"
+            aria-label="Mahadi Hasan — Home"
           >
-            <div className="relative w-10 h-10 border border-[#FFFBD4]/30 bg-black flex items-center justify-center transition-transform duration-300 group-hover:border-[#A90E02]">
+            <div className="relative w-10 h-10 border border-[#FFFBD4]/30 bg-black flex items-center justify-center transition-all duration-300 group-hover:border-[#A90E02]">
               <span className="font-display text-2xl text-[#FFFBD4] tracking-widest leading-none pt-0.5">
                 MH
               </span>
@@ -82,7 +95,7 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
@@ -109,10 +122,19 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Direct CTA, CV Download & Mobile Toggle */}
+          {/* Right side: Available badge + CTA + Mobile toggle */}
           <div className="flex items-center gap-3">
+            {/* Available badge — desktop only */}
+            <span className="hidden lg:inline-flex items-center gap-2 font-mono-code text-[9px] font-bold tracking-[0.14em] text-[#FFFBD4]/70 uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#FFFBD4]/40 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FFFBD4]" />
+              </span>
+              Available for Opportunities
+            </span>
+
             <a
-              href="/Mahadi_Hasan_MERN_Resume.pdf"
+              href="/api/download-cv"
               download="Mahadi_Hasan_MERN_Resume.pdf"
               className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs font-mono-code tracking-widest uppercase bg-[#A90E02] text-[#FFFBD4] hover:bg-[#850b02] transition-colors duration-300 font-bold cursor-pointer"
             >
@@ -120,16 +142,7 @@ export default function Navbar() {
               <span>Resume</span>
             </a>
 
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, '#contact')}
-              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono-code tracking-widest uppercase bg-transparent border border-[#A90E02] text-[#FFFBD4] hover:bg-[#A90E02] transition-colors duration-300"
-            >
-              <span>Get In Touch</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#FFFBD4]" />
-            </a>
-
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 text-[#FFFBD4] hover:text-[#A90E02] transition-colors"
@@ -145,7 +158,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-black flex flex-col justify-center px-8 md:hidden">
           <div className="absolute top-6 left-6 font-mono-code text-xs text-[#A8A8A8]">
-            // NAVIGATION
+            {'// NAVIGATION'}
           </div>
           <nav className="flex flex-col gap-6">
             {NAV_ITEMS.map((item, idx) => (
@@ -170,7 +183,7 @@ export default function Navbar() {
 
           <div className="mt-8 flex flex-col gap-4">
             <a
-              href="/Mahadi_Hasan_MERN_Resume.pdf"
+              href="/api/download-cv"
               download="Mahadi_Hasan_MERN_Resume.pdf"
               className="w-full py-3 bg-[#A90E02] text-[#FFFBD4] font-mono-code text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 cursor-pointer"
             >
